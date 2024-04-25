@@ -75,4 +75,8 @@ class AdminController extends Controller
             'account_no'=>$request->account_name
         ]);
     }
+    // ---------------- admin feedback -----------------
+    public function adminFeedBack(){
+        return view('admin_feedback');
+    }
 }

@@ -8,10 +8,14 @@ Route::get('/admin-login',[AdminController::class,'login']);
 // ----------------- admin login post -----------------
 Route::post('/admin-login',[AdminController::class,'loginPost']);
 // ------------ admin dashboard ----------------
-Route::get('/admin-dash',[AdminController::class, 'dash']);
-// --------------- admin logout ----------------
-Route::get('/admin-logout',[AdminController::class,'logout']);
-// ---------------- admin update bank name --------------
-Route::post('/admin-bank-name',[AdminController::class, 'bankName']);
-// -------------- admin update account no ------------
-Route::post('/admin-update-account',[AdminController::class, 'accountNo']);
+Route::middleware(['admin_auth'])->group(function () {
+    Route::get('/admin-dash',[AdminController::class, 'dash']);
+    // --------------- admin logout ----------------
+    Route::get('/admin-logout',[AdminController::class,'logout']);
+    // ---------------- admin update bank name --------------
+    Route::post('/admin-bank-name',[AdminController::class, 'bankName']);
+    // -------------- admin update account no ------------
+    Route::post('/admin-update-account',[AdminController::class, 'accountNo']);
+    // --------------- admin feed back routes ----------------  -
+    Route::get('/admin-feedback',[AdminController::class, 'adminFeedBack']);
+});
